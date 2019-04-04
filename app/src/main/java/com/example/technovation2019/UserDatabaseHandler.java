@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class UserDatabaseHandler extends SQLiteOpenHelper{
     public static final String DATABASE_NAME = "userDatabase.db";
-    public static final String TABLE_NAME = "mInformation";
+    public static final String TABLE_NAME = "myInformation";
     public static final String EMAIL = "email";
     public static final String PASSWORD = "password";
     
@@ -23,7 +23,7 @@ public UserDatabaseHandler(Context context){
 @Override
 public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
-        db.execSQL("create table TutorialsPoint " +
+        db.execSQL("create table myInformation " +
         "(email text primary key, password text)"
         );
         }
@@ -31,7 +31,7 @@ public void onCreate(SQLiteDatabase db) {
 @Override
 public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // TODO Auto-generated method stub
-        db.execSQL("DROP TABLE IF EXISTS TutorialsPoint");
+        db.execSQL("DROP TABLE IF EXISTS myInformation");
         onCreate(db);
         }
 
@@ -45,7 +45,7 @@ public boolean insertUserInfo (String email, String password) {
         }
 public boolean verifyUserInfo (String email, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from TutorialsPoint where email='"+email+"' and password= '"+password+"'", null );
+        Cursor res =  db.rawQuery( "select * from myInformation where email='"+email+"' and password= '"+password+"'", null );
         if (res.getCount() > 0) {
         return true;
         } else {
@@ -54,7 +54,7 @@ public boolean verifyUserInfo (String email, String password) {
         }
 public boolean isUserExist(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from TutorialsPoint where email='"+email+"'", null );
+        Cursor res =  db.rawQuery( "select * from myInformation where email='"+email+"'", null );
         if (res.getCount() > 0) {
         return true;
         } else {
